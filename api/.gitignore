@@ -40,3 +40,5 @@ test/*.js
 *.map
 
 .DS_Store
+
+.prettierrc.json
