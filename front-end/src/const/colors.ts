@@ -1,0 +1,11 @@
+export const greenColor = "rgba(90, 224, 160, 1)";
+export const lightGreen = "#9AF6CA";
+export const redColor = "red";
+export const lightGray = "#F4F4F4";
+export const grayColor = "#757575";
+export const whiteColor = "#fff";
+export const blackColor = "#000000";
+export const blueColor = "#42A5F5";
+export const lightBlueColor = "#81D4FA";
+export const purpleColor = "#9C27B0";
+export const orangeColor = "#ED6C02";
