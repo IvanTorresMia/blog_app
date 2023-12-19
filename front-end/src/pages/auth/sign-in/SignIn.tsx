@@ -26,6 +26,10 @@ export default function SignIn() {
                 username: data.username,
                 password: data.password,
             });
+            if (res?.data.token) {
+                localStorage.setItem("userToken", res?.data.token);
+                navigate("/");
+            }
         } catch (err) {
             console.log(err);
         }
