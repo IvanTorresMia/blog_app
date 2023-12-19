@@ -11,6 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { Grid } from "@mui/material";
 // import AdbIcon from "@mui/icons-material/Adb";
 
 const pages = ["Blog", "Tasks"];
@@ -43,7 +44,7 @@ export default function Navigation({ children }: IProps) {
         setAnchorElUser(null);
     };
     return (
-        <>
+        <Grid container>
             <AppBar position="static">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
@@ -199,8 +200,7 @@ export default function Navigation({ children }: IProps) {
                     </Toolbar>
                 </Container>
             </AppBar>
-            );
-            {children}
-        </>
+            <Grid>{children}</Grid>
+        </Grid>
     );
 }
