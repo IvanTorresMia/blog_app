@@ -5,6 +5,9 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import SignIn from "./pages/auth/sign-in/SignIn";
+import Navigation from "./components/Navigation";
+import Layout from "./components/Layout";
+import Home from "./pages/home/Home";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -13,7 +16,13 @@ const root = ReactDOM.createRoot(
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <App />,
+        element: <Layout />,
+        children: [
+            {
+                index: true,
+                element: <Home />,
+            },
+        ],
     },
     {
         path: "/sign-in",
