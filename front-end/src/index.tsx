@@ -1,13 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import SignIn from "./pages/auth/sign-in/SignIn";
-import Navigation from "./components/Navigation";
 import Layout from "./components/Layout";
 import Home from "./pages/home/Home";
+import Tasks from "./pages/tasks/Tasks";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -21,6 +20,10 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home />,
+            },
+            {
+                path: "tasks",
+                element: <Tasks />,
             },
         ],
     },
