@@ -1,6 +1,5 @@
-import { Grid } from "@mui/material";
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Home from "./pages/home/Home";
 
@@ -12,7 +11,7 @@ function App() {
         if (!token) {
             navigate("/sign-in");
         }
-    }, []);
+    }, [navigate]);
 
     return <Home />;
 }
