@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Task, UpdateTask } from "../types/app-types";
+import { UpdateTask } from "../types/app-types";
 const url = "http://localhost:3072/";
 
 export async function createNewTask({ message }: { message: string }) {
