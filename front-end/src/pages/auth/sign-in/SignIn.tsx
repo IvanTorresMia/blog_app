@@ -16,7 +16,6 @@ export default function SignIn() {
         control,
         handleSubmit,
         formState: { errors, isSubmitting },
-        setError,
     } = useForm();
 
     const onSubmitValid: SubmitHandler<FieldValues> = async (data) => {
