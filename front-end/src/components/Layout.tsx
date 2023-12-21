@@ -3,6 +3,8 @@ import AppContainer from "./AppContainer";
 import { Outlet, useNavigate } from "react-router-dom";
 import Navigation from "./Navigation";
 import { useEffect } from "react";
+import { theme } from "../theme";
+import { AuthProvider } from "../providers/useAuth";
 
 export default function Layout() {
     const navigate = useNavigate();
@@ -11,15 +13,21 @@ export default function Layout() {
         if (!token) {
             navigate("/sign-in");
         }
-    }, []);
+    }, [navigate]);
 
     return (
         <AppContainer>
-            <Navigation>
-                <Box>
-                    <Outlet />
-                </Box>
-            </Navigation>
+            <AuthProvider>
+                <Navigation>
+                    <Box
+                        paddingTop={theme.spacing(6)}
+                        paddingLeft={theme.spacing(15)}
+                        paddingRight={theme.spacing(15)}
+                    >
+                        <Outlet />
+                    </Box>
+                </Navigation>
+            </AuthProvider>
         </AppContainer>
     );
 }
