@@ -1,5 +1,5 @@
-import { Box, Grid, ThemeProvider } from "@mui/material";
-import React, { ReactNode } from "react";
+import { Box, ThemeProvider } from "@mui/material";
+import { ReactNode } from "react";
 import { theme } from "../theme";
 import { SnackbarProvider } from "notistack";
 
