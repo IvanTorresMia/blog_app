@@ -49,7 +49,7 @@ export default function RenderBlogs({ user }: IProps) {
                             <Divider />
                             <Box padding={theme.spacing(1)}>
                                 <Typography variant="caption">
-                                    {blog.body.slice(0, 30)}...
+                                    {blog.body.slice(0, 200)}...
                                 </Typography>
                             </Box>
                             <Box padding={theme.spacing(1)}>

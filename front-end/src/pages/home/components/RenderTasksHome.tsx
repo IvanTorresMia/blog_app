@@ -41,7 +41,7 @@ export default function RenderTasksHome({ user }: IProps) {
                             borderRadius={1}
                         >
                             <Typography
-                                variant="subtitle1"
+                                variant="subtitle2"
                                 paddingBottom={theme.spacing(2)}
                             >
                                 {task.message}
