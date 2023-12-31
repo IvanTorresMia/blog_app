@@ -84,6 +84,7 @@ export const deleteBlog: RequestHandler = async (req, res, next) => {
         await Blog.destroy({
             where: { blogId: blogId },
         });
+        res.status(200).json();
     } else {
         res.status(404).json();
     }
