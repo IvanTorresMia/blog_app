@@ -11,7 +11,9 @@ export default function Home() {
     return (
         <Grid container>
             <Grid item xs={12} marginBottom={theme.spacing(2)}>
-                <Typography variant="h1">Welcome Back</Typography>
+                <Typography variant="h1">
+                    Welcome Back {`${userData.user?.firstName}`}
+                </Typography>
             </Grid>
             <Grid
                 item
