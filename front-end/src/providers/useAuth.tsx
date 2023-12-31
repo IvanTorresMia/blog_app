@@ -7,6 +7,7 @@ import {
 } from "react";
 import { User } from "../types/auth-types";
 import { getCurrentUser } from "../apis/auth";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
     children: ReactNode;
@@ -17,14 +18,19 @@ const AuthContext = createContext<{ user: User | null }>({
 });
 
 export function AuthProvider({ children }: IProps) {
+    const navigate = useNavigate();
     const [user, setUser] = useState<User | null>(null);
 
     const getUser = async () => {
         try {
             const res = await getCurrentUser();
+
             setUser(res.data);
         } catch (e) {
-            console.log(e);
+            const errorMessage = e as Error;
+            if (errorMessage.message) {
+                navigate("/sign-in");
+            }
         }
     };
     useEffect(() => {
