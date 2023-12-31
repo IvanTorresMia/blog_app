@@ -8,15 +8,12 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { grayColor } from "../../../const/colors";
 import CustomModal from "../../../components/CustomModal";
 
-// TODO: create a way to make text bold and affect fonts while creating a blog
 export default function ViewBlog() {
     const location = useLocation();
     const navigate = useNavigate();
     const [blog, setBlog] = useState<GetBlog | null>(null);
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [openModal, setOpenModal] = useState(false);
     const handleCloseModal = () => setOpenModal(false);
-    const open = Boolean(anchorEl);
 
     const handleOpen = () => setOpenModal(true);
 
@@ -55,8 +52,6 @@ export default function ViewBlog() {
             </Grid>
         );
     }
-
-    console.log(blog.body);
 
     return (
         <Grid container>
