@@ -4,25 +4,11 @@ import { redirect, useNavigate } from "react-router-dom";
 import { User } from "../../types/auth-types";
 import { getCurrentUser } from "../../apis/auth";
 import RenderBlogs from "./components/RenderBlogs";
+import { useAuth } from "../../providers/useAuth";
 
 export default function Blogs() {
     const navigate = useNavigate();
-    const [user, setUser] = useState<User | null>(null);
-
-    const getUser = async () => {
-        try {
-            const res = await getCurrentUser();
-            const userData: User = res.data;
-            setUser(userData);
-        } catch (e) {
-            redirect("/sign-in");
-            console.log(e);
-        }
-    };
-
-    useEffect(() => {
-        getUser();
-    }, []);
+    const user = useAuth();
     return (
         <Box>
             <Grid container>
@@ -40,7 +26,7 @@ export default function Blogs() {
                     </Button>
                 </Grid>
             </Grid>
-            {!!user && <RenderBlogs user={user} />}
+            {!!user.user && <RenderBlogs user={user.user} />}
         </Box>
     );
 }
