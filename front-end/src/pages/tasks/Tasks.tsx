@@ -11,8 +11,8 @@ import { getCurrentUser } from "../../apis/auth";
 import { User } from "../../types/auth-types";
 
 export default function Tasks() {
-    const [user, setUser] = useState<User | null>();
     const [tasks, setTasks] = useState<GetTask[] | null>(null);
+    const user = useAuth();
 
     // TODO: fix the auth context and refactor this to not get user on this file
     const getAllTasks = async (userId: number) => {
@@ -24,19 +24,10 @@ export default function Tasks() {
         }
     };
 
-    const getUser = async () => {
-        try {
-            const res = await getCurrentUser();
-            const userData: User = res.data;
-            setUser(userData);
-            getAllTasks(userData.userId);
-        } catch (e) {
-            console.log(e);
-        }
-    };
-
     useEffect(() => {
-        getUser();
+        if (user.user?.userId) {
+            getAllTasks(user.user?.userId);
+        }
     }, []);
     return (
         <Box
@@ -46,7 +37,7 @@ export default function Tasks() {
         >
             <CreateTask
                 updateTasks={() => {
-                    getAllTasks(user?.userId!);
+                    getAllTasks(user.user?.userId!);
                 }}
             />
             <Box
@@ -64,7 +55,7 @@ export default function Tasks() {
                             key={task.todoId}
                             task={task}
                             updateTasks={() => {
-                                getAllTasks(user?.userId!);
+                                getAllTasks(user.user?.userId!);
                             }}
                         />
                     );
