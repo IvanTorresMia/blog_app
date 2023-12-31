@@ -21,7 +21,6 @@ export default function ViewBlog() {
         try {
             const res = await getUserBlog(blogId);
             setBlog(res.data);
-            console.log(res);
         } catch (e) {
             console.log(e);
         }
