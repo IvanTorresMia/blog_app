@@ -14,7 +14,6 @@ export default function Tasks() {
     const [tasks, setTasks] = useState<GetTask[] | null>(null);
     const user = useAuth();
 
-    // TODO: fix the auth context and refactor this to not get user on this file
     const getAllTasks = async (userId: number) => {
         try {
             const res = await getAllUserTasks(userId);

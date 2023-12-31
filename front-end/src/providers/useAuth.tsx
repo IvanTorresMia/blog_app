@@ -16,10 +16,6 @@ const AuthContext = createContext<{ user: User | null }>({
     user: null,
 });
 
-// knowing what we know now about using hooks and that they always render after
-// a component has rendered the return function.
-// We know that that is why our useEffect is not doing what we want it to do.
-//
 export function AuthProvider({ children }: IProps) {
     const [user, setUser] = useState<User | null>(null);
 
