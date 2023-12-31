@@ -7,6 +7,10 @@ import SignIn from "./pages/auth/sign-in/SignIn";
 import Layout from "./components/Layout";
 import Home from "./pages/home/Home";
 import Tasks from "./pages/tasks/Tasks";
+import Blogs from "./pages/blogs/Blogs";
+import CreateBlog from "./pages/blogs/components/CreateBlog";
+import ViewBlog from "./pages/blogs/components/ViewBlog";
+import UpdateBlog from "./pages/blogs/components/UpdateBlog";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -24,6 +28,22 @@ const router = createBrowserRouter([
             {
                 path: "tasks",
                 element: <Tasks />,
+            },
+            {
+                path: "blog",
+                element: <Blogs />,
+            },
+            {
+                path: "create-blog",
+                element: <CreateBlog />,
+            },
+            {
+                path: "view-blog",
+                element: <ViewBlog />,
+            },
+            {
+                path: "update-blog",
+                element: <UpdateBlog />,
             },
         ],
     },

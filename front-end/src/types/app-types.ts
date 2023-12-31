@@ -18,3 +18,19 @@ export type UpdateTask = {
     todoId: number;
     message: string;
 };
+
+export type UpdateBlog = {
+    blogId: number;
+    title: string;
+    body: string;
+};
+
+export type GetBlog = {
+    User: User;
+    createdAt: string;
+    updatedAt: string;
+    title: string;
+    body: string;
+    blogId: number;
+    userId: number;
+};

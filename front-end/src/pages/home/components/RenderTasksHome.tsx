@@ -27,7 +27,7 @@ export default function RenderTasksHome({ user }: IProps) {
     }, []);
 
     return (
-        <Grid container>
+        <Grid container padding={theme.spacing(2)}>
             {!!tasks &&
                 tasks.map((task) => {
                     return (
@@ -37,6 +37,7 @@ export default function RenderTasksHome({ user }: IProps) {
                             marginTop={theme.spacing(2)}
                             padding={theme.spacing(1)}
                             border={`${theme.spacing(0.2)} solid ${lightGray}`}
+                            borderRadius={1}
                         >
                             <Typography variant="subtitle2">
                                 {task.message}

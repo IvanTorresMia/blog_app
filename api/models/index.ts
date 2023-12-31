@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize";
 import { UserFactory } from "./user";
 import { AssociateUserTodos, TodoFactory } from "./todos";
+import { AssociateUserBlogs, BlogFactory } from "./blog";
 
 const dbName = "todo_app";
 const username = "root";
@@ -14,6 +15,8 @@ const sequelize = new Sequelize(dbName, username, password, {
 
 UserFactory(sequelize);
 TodoFactory(sequelize);
+BlogFactory(sequelize);
 AssociateUserTodos();
+AssociateUserBlogs();
 
 export const db = sequelize;

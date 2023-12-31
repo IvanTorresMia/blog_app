@@ -42,8 +42,16 @@ export default function Navigation({ children }: IProps) {
         navigate(`/${page.toLocaleLowerCase()}`);
     };
 
-    const handleCloseUserMenu = () => {
+    const handleCloseUserMenu = (option: string) => {
         setAnchorElUser(null);
+        if (option === "Logout") {
+            handleLogOut();
+        }
+    };
+
+    const handleLogOut = () => {
+        localStorage.removeItem("userToken");
+        navigate("/sign-in");
     };
     return (
         <Grid container>
@@ -194,7 +202,9 @@ export default function Navigation({ children }: IProps) {
                                 {settings.map((setting) => (
                                     <MenuItem
                                         key={setting}
-                                        onClick={handleCloseUserMenu}
+                                        onClick={() =>
+                                            handleCloseUserMenu(setting)
+                                        }
                                     >
                                         <Typography textAlign="center">
                                             {setting}

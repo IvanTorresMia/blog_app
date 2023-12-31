@@ -1,4 +1,5 @@
 import axios from "axios";
+
 const url = "http://localhost:3072/";
 
 export async function signInUser({
@@ -15,8 +16,6 @@ export async function signInUser({
 
     if (res.status === 200 || res.status === 201) {
         return res;
-    } else if (res.status === 401) {
-        // navigate back
     } else {
         throw new Error("Failed to fetch user");
     }

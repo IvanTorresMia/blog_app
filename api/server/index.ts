@@ -8,6 +8,7 @@ import morgan from "morgan";
 import { db } from "../models";
 import userRoutes from "../routes/userRoutes";
 import todoRoutes from "../routes/todoRoutes";
+import blogRoutes from "../routes/blogRoutes";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/user", userRoutes);
 app.use("/api/todo", todoRoutes);
+app.use("/api/blog", blogRoutes);
 
 const server = http.createServer(app);
 

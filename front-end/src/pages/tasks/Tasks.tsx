@@ -46,7 +46,6 @@ export default function Tasks() {
         >
             <CreateTask
                 updateTasks={() => {
-                    console.log("hi");
                     getAllTasks(user?.userId!);
                 }}
             />
