@@ -10,6 +10,7 @@ export type GetTask = {
     createdAt: string;
     updatedAt: string;
     message: string;
+    completed: boolean;
     todoId: number;
     userId: number;
 };
@@ -17,6 +18,7 @@ export type GetTask = {
 export type UpdateTask = {
     todoId: number;
     message: string;
+    completed: boolean;
 };
 
 export type UpdateBlog = {
