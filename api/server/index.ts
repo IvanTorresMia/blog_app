@@ -10,6 +10,8 @@ import userRoutes from "../routes/userRoutes";
 import todoRoutes from "../routes/todoRoutes";
 import blogRoutes from "../routes/blogRoutes";
 
+const PORT = process.env.PORT || 3072;
+
 const app = express();
 
 app.use(cors());
@@ -32,6 +34,6 @@ db.sync({ alter: true }).then(() => {
     console.info("connected to DB!");
 });
 
-server.listen(3072, () => {
+server.listen(PORT, () => {
     console.log("Server Running one 3072");
 });

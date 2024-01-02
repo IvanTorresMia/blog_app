@@ -47,6 +47,7 @@ export default function RenderBlogsHome({ user }: IProps) {
                 blogs.map((blog) => {
                     return (
                         <Grid
+                            key={blog.blogId}
                             item
                             xs={3}
                             margin={theme.spacing(1)}
