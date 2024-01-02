@@ -1,4 +1,12 @@
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import {
+    Box,
+    Button,
+    Checkbox,
+    FormControlLabel,
+    Grid,
+    TextField,
+    Typography,
+} from "@mui/material";
 import { GetTask, Task, UpdateTask } from "../../../types/app-types";
 import {
     Controller,
@@ -26,6 +34,7 @@ export default function RenderTasks({ task, updateTasks }: IProps) {
         const updatedTask: UpdateTask = {
             todoId: task?.todoId!,
             message: data.task,
+            completed: data.completed ? data.completed : false,
         };
 
         try {
@@ -75,24 +84,45 @@ export default function RenderTasks({ task, updateTasks }: IProps) {
                         )}
                     />
                 </Grid>
-                <Grid item xs={7} display={"flex"}>
-                    <Button
-                        type="submit"
-                        variant="text"
-                        style={{
-                            textTransform: "none",
-                            marginRight: theme.spacing(2),
-                        }}
-                    >
-                        Update Task
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        style={{ textTransform: "none" }}
-                        onClick={handleDelete}
-                    >
-                        Delete
-                    </Button>
+                <Grid
+                    item
+                    xs={7}
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                >
+                    <Controller
+                        name="completed"
+                        control={control}
+                        defaultValue={task?.completed}
+                        render={({ field: { ref, ...field } }) => (
+                            <FormControlLabel
+                                defaultChecked={task?.completed}
+                                inputRef={ref}
+                                {...field}
+                                control={<Checkbox />}
+                                label="Mark as completed"
+                            />
+                        )}
+                    />
+                    <Box>
+                        <Button
+                            type="submit"
+                            variant="text"
+                            style={{
+                                textTransform: "none",
+                                marginRight: theme.spacing(2),
+                            }}
+                        >
+                            Update Task
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            style={{ textTransform: "none" }}
+                            onClick={handleDelete}
+                        >
+                            Delete
+                        </Button>
+                    </Box>
                 </Grid>
             </Grid>
         </form>

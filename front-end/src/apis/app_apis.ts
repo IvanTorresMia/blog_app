@@ -2,13 +2,19 @@ import axios from "axios";
 import { UpdateTask } from "../types/app-types";
 const url = "http://localhost:3072/";
 
-export async function createNewTask({ message }: { message: string }) {
+export async function createNewTask({
+    message,
+    completed,
+}: {
+    message: string;
+    completed: boolean;
+}) {
     const userToken = localStorage.getItem("userToken");
     let reqHeaders = {
         Authorization: `Bearer ${userToken}`,
     };
 
-    const data = { message: message };
+    const data = { message: message, completed: completed };
     const res = await axios.post(`${url}api/todo/`, data, {
         headers: reqHeaders,
     });

@@ -1,4 +1,11 @@
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import {
+    Button,
+    Checkbox,
+    FormControlLabel,
+    Grid,
+    TextField,
+    Typography,
+} from "@mui/material";
 import {
     Controller,
     FieldValues,
@@ -23,8 +30,16 @@ export default function CreateTask({ updateTasks }: IProps) {
     const onSubmitValid: SubmitHandler<FieldValues> = async (data) => {
         if (isSubmitting) return;
 
+        const dataFormatted = {
+            message: data.task,
+            completed: false,
+        };
+
         try {
-            await createNewTask({ message: data.task });
+            await createNewTask({
+                message: dataFormatted.message,
+                completed: dataFormatted.completed,
+            });
             updateTasks();
         } catch (err) {
             console.log(err);
