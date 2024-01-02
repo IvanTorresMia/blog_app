@@ -14,6 +14,7 @@ export class Todo extends Model<
 > {
     declare todoId: number;
     declare message: string;
+    declare completed: boolean;
     declare userId: number;
     declare createdAt?: Date;
     declare updatedAt?: Date;
@@ -27,6 +28,9 @@ export function TodoFactory(sequelize: Sequelize) {
                 autoIncrement: true,
                 primaryKey: true,
                 allowNull: false,
+            },
+            completed: {
+                type: DataTypes.BOOLEAN,
             },
             message: {
                 type: DataTypes.STRING,
