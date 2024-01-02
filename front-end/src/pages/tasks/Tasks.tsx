@@ -4,11 +4,8 @@ import { theme } from "../../theme";
 import RenderTasks from "./components/RenderTask";
 import { useEffect, useState } from "react";
 import { getAllUserTasks } from "../../apis/app_apis";
-
 import { useAuth } from "../../providers/useAuth";
 import { GetTask } from "../../types/app-types";
-import { getCurrentUser } from "../../apis/auth";
-import { User } from "../../types/auth-types";
 
 export default function Tasks() {
     const [tasks, setTasks] = useState<GetTask[] | null>(null);
@@ -24,10 +21,11 @@ export default function Tasks() {
     };
 
     useEffect(() => {
+        console.log("hi");
         if (user.user?.userId) {
             getAllTasks(user.user?.userId);
         }
-    }, []);
+    }, [user.user?.userId]);
     return (
         <Box
             display={"flex"}

@@ -27,7 +27,7 @@ export default function RenderBlogsHome({ user }: IProps) {
 
     useEffect(() => {
         getAllBlogsUser(user?.userId);
-    }, []);
+    }, [user?.userId]);
 
     if (_.isEmpty(blogs) || !blogs) {
         return (

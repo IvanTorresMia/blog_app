@@ -1,5 +1,5 @@
 import axios from "axios";
-import { UpdateBlog, UpdateTask } from "../types/app-types";
+import { UpdateBlog } from "../types/app-types";
 const url = "http://localhost:3072/api/blog/";
 
 export async function createBlog({

@@ -1,11 +1,4 @@
-import {
-    Button,
-    Checkbox,
-    FormControlLabel,
-    Grid,
-    TextField,
-    Typography,
-} from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import {
     Controller,
     FieldValues,
@@ -50,7 +43,7 @@ export default function CreateTask({ updateTasks }: IProps) {
         reset({
             task: "",
         });
-    }, [isSubmitSuccessful]);
+    }, [isSubmitSuccessful, reset]);
 
     return (
         <form onSubmit={handleSubmit(onSubmitValid)}>

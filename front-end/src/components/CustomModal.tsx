@@ -1,5 +1,5 @@
 import { Box, Modal } from "@mui/material";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 
 const style = {
     position: "absolute" as "absolute",

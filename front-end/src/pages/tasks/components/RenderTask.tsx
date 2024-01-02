@@ -7,7 +7,7 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import { GetTask, Task, UpdateTask } from "../../../types/app-types";
+import { GetTask, UpdateTask } from "../../../types/app-types";
 import {
     Controller,
     FieldValues,

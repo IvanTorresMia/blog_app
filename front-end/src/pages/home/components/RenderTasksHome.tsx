@@ -26,7 +26,7 @@ export default function RenderTasksHome({ user }: IProps) {
 
     useEffect(() => {
         getAllTasks(user?.userId);
-    }, []);
+    }, [user?.userId]);
 
     if (_.isEmpty(tasks) || !tasks) {
         return (
@@ -103,6 +103,7 @@ export default function RenderTasksHome({ user }: IProps) {
                                     </Grid>
                                 );
                             }
+                            return <></>;
                         })}
                 </Box>
                 <Box width={"45%"}>
@@ -159,6 +160,7 @@ export default function RenderTasksHome({ user }: IProps) {
                                     </Grid>
                                 );
                             }
+                            return <></>;
                         })}
                 </Box>
             </Grid>

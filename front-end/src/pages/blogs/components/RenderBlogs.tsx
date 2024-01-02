@@ -26,7 +26,7 @@ export default function RenderBlogs({ user }: IProps) {
 
     useEffect(() => {
         getAllBlogsUser(user?.userId);
-    }, []);
+    }, [user?.userId]);
     return (
         <Grid container padding={theme.spacing(2)}>
             {!!blogs &&

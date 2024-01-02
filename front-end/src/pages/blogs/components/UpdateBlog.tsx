@@ -8,8 +8,6 @@ import {
 
 import { useLocation, useNavigate } from "react-router-dom";
 import { updateBlog } from "../../../apis/blog_apis";
-import { useState } from "react";
-import { GetBlog } from "../../../types/app-types";
 import { grayColor } from "../../../const/colors";
 import { theme } from "../../../theme";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -17,7 +15,6 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 export default function UpdateBlog() {
     const navigate = useNavigate();
     const location = useLocation();
-    const [blog, setBlog] = useState<GetBlog | null>(null);
     const {
         control,
         handleSubmit,

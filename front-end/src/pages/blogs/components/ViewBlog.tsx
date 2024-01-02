@@ -31,7 +31,7 @@ export default function ViewBlog() {
         if (blogId) {
             getBlog(blogId);
         }
-    }, []);
+    }, [location.state.blogId]);
 
     const handleDelete = async () => {
         try {

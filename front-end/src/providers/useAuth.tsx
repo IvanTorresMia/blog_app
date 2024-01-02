@@ -1,6 +1,7 @@
 import {
     ReactNode,
     createContext,
+    useCallback,
     useContext,
     useEffect,
     useState,
@@ -21,7 +22,7 @@ export function AuthProvider({ children }: IProps) {
     const navigate = useNavigate();
     const [user, setUser] = useState<User | null>(null);
 
-    const getUser = async () => {
+    const getUser = useCallback(async () => {
         try {
             const res = await getCurrentUser();
 
@@ -32,10 +33,11 @@ export function AuthProvider({ children }: IProps) {
                 navigate("/sign-in");
             }
         }
-    };
+    }, [navigate]);
     useEffect(() => {
+        console.log("hi");
         getUser();
-    }, []);
+    }, [getUser]);
 
     return (
         <>

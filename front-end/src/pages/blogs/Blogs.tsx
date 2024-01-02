@@ -1,8 +1,5 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import { redirect, useNavigate } from "react-router-dom";
-import { User } from "../../types/auth-types";
-import { getCurrentUser } from "../../apis/auth";
+import { useNavigate } from "react-router-dom";
 import RenderBlogs from "./components/RenderBlogs";
 import { useAuth } from "../../providers/useAuth";
 
