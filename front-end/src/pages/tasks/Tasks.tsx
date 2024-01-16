@@ -21,7 +21,6 @@ export default function Tasks() {
     };
 
     useEffect(() => {
-        console.log("hi");
         if (user.user?.userId) {
             getAllTasks(user.user?.userId);
         }

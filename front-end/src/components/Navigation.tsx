@@ -12,6 +12,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../providers/useAuth";
 
 const pages = ["Blog", "Tasks"];
 const settings = ["Logout"];
@@ -22,6 +23,7 @@ interface IProps {
 
 export default function Navigation({ children }: IProps) {
     const navigate = useNavigate();
+    const user = useAuth();
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
         null
     );
@@ -178,7 +180,9 @@ export default function Navigation({ children }: IProps) {
                                     sx={{ p: 0 }}
                                 >
                                     <Avatar
-                                        alt="Torres"
+                                        alt={
+                                            user ? user.user?.lastName : "Guest"
+                                        }
                                         src="/static/images/avatar/2.jpg"
                                     />
                                 </IconButton>
