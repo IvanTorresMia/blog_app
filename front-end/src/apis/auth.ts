@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CreateUser } from "../types/auth-types";
 
 const url = "http://localhost:3072/";
 
@@ -40,4 +41,12 @@ export async function getCurrentUser() {
     }
 }
 
-export async function getTasksByiD(id: number) {}
+export async function createUser(data: CreateUser) {
+    const res = await axios.post(`${url}api/user`, data);
+
+    if (res.status === 200 || res.status === 201) {
+        return res;
+    } else {
+        throw new Error("Failed to create user");
+    }
+}
