@@ -1,5 +1,8 @@
 import {
+    Box,
     Button,
+    Checkbox,
+    FormControlLabel,
     Grid,
     TextField,
     ThemeProvider,
@@ -14,9 +17,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import { theme } from "../../../theme";
 import { signInUser } from "../../../apis/auth";
+import { useState } from "react";
 
 export default function SignIn() {
     const navigate = useNavigate();
+    const [showPass, setShowPass] = useState<boolean>(false);
 
     const {
         control,
@@ -84,14 +89,14 @@ export default function SignIn() {
                                     inputRef={ref}
                                     error={!!errors.password}
                                     label="Password"
-                                    type="password"
+                                    type={showPass ? "text" : "password"}
                                     variant="outlined"
                                     fullWidth
                                 />
                             )}
                         />
                     </Grid>
-                    <Grid item xs={8}>
+                    <Grid item xs={8} display={"flex"}>
                         <Button
                             color="primary"
                             type="submit"
@@ -99,6 +104,15 @@ export default function SignIn() {
                         >
                             Sign In
                         </Button>
+                        <Box marginLeft={theme.spacing(2)}>
+                            <FormControlLabel
+                                control={<Checkbox />}
+                                label="see password"
+                                onChange={() => {
+                                    setShowPass(!showPass);
+                                }}
+                            />
+                        </Box>
                     </Grid>
                 </Grid>
             </form>
