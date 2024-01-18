@@ -3,6 +3,7 @@ import {
     Button,
     Checkbox,
     FormControlLabel,
+    FormHelperText,
     Grid,
     TextField,
     ThemeProvider,
@@ -17,7 +18,15 @@ import {
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../../../apis/auth";
 import { theme } from "../../../theme";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import FormInvalidText from "../../../components/FormErrorText";
+import { greenColor, redColor } from "../../../const/colors";
+
+interface IPasswordStrength {
+    atLeast8Char: boolean;
+    atLeast1UppercaseLetters: boolean;
+    atLeast1Number: boolean;
+}
 
 export default function ActivateAccount() {
     const navigate = useNavigate();
@@ -26,16 +35,31 @@ export default function ActivateAccount() {
     const {
         control,
         handleSubmit,
-        formState: { errors, isSubmitting },
-    } = useForm();
+        formState: { errors, isSubmitting, touchedFields },
+        watch,
+    } = useForm({
+        defaultValues: {
+            username: "",
+            firstName: "",
+            lastName: "",
+            password: "",
+            passwordVerify: "",
+        },
+        mode: "onChange",
+    });
 
-    const onSubmitValid: SubmitHandler<FieldValues> = async (data) => {
+    const onSubmitValid: SubmitHandler<FieldValues> = async ({
+        username,
+        firstName,
+        lastName,
+        password,
+    }) => {
         if (isSubmitting) return;
         const userData = {
-            username: data.username,
-            firstName: data.firstName,
-            lastName: data.lastName,
-            password: data.password,
+            username: username,
+            firstName: firstName,
+            lastName: lastName,
+            password: password,
         };
 
         try {
@@ -45,6 +69,16 @@ export default function ActivateAccount() {
             console.log(e);
         }
     };
+
+    const password = watch("password");
+    const passwordStrength: IPasswordStrength = useMemo(
+        () => ({
+            atLeast8Char: password.length >= 8,
+            atLeast1UppercaseLetters: /[A-Z]/.test(password),
+            atLeast1Number: /[0-9]/.test(password),
+        }),
+        [password]
+    );
 
     return (
         <ThemeProvider theme={theme}>
@@ -78,6 +112,9 @@ export default function ActivateAccount() {
                                 />
                             )}
                         />
+                        <FormInvalidText
+                            errorMessage={errors.username?.message}
+                        />
                     </Grid>
                     <Grid item xs={6}>
                         <Controller
@@ -95,6 +132,9 @@ export default function ActivateAccount() {
                                     fullWidth
                                 />
                             )}
+                        />
+                        <FormInvalidText
+                            errorMessage={errors.firstName?.message}
                         />
                     </Grid>
                     <Grid item xs={6}>
@@ -114,6 +154,9 @@ export default function ActivateAccount() {
                                 />
                             )}
                         />
+                        <FormInvalidText
+                            errorMessage={errors.lastName?.message}
+                        />
                     </Grid>
                     <Grid item xs={12}>
                         <Controller
@@ -132,7 +175,87 @@ export default function ActivateAccount() {
                                 />
                             )}
                         />
+                        <FormInvalidText
+                            errorMessage={errors.password?.message}
+                        />
                     </Grid>
+                    <Grid item xs={12}>
+                        {passwordStrength.atLeast8Char ? (
+                            <FormHelperText style={{ color: greenColor }}>
+                                Contains at least 8 characters
+                            </FormHelperText>
+                        ) : (
+                            <FormHelperText
+                                style={{
+                                    color: touchedFields.password
+                                        ? redColor
+                                        : undefined,
+                                }}
+                            >
+                                Contains at least 8 characters
+                            </FormHelperText>
+                        )}
+
+                        {passwordStrength.atLeast1UppercaseLetters ? (
+                            <FormHelperText style={{ color: greenColor }}>
+                                Contains at least 1 uppercase character
+                            </FormHelperText>
+                        ) : (
+                            <FormHelperText
+                                style={{
+                                    color: touchedFields.password
+                                        ? redColor
+                                        : undefined,
+                                }}
+                            >
+                                Contains at least 1 uppercase character
+                            </FormHelperText>
+                        )}
+
+                        {passwordStrength.atLeast1Number ? (
+                            <FormHelperText style={{ color: greenColor }}>
+                                Contains at least 1 number
+                            </FormHelperText>
+                        ) : (
+                            <FormHelperText
+                                style={{
+                                    color: touchedFields.password
+                                        ? redColor
+                                        : undefined,
+                                }}
+                            >
+                                Contains at least 1 number
+                            </FormHelperText>
+                        )}
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Controller
+                            name="passwordVerify"
+                            control={control}
+                            rules={{
+                                required: "Passwords must match",
+                                validate: (value, { password }) =>
+                                    value === password || "Password must match",
+                            }}
+                            render={({ field: { ref, ...field } }) => (
+                                <TextField
+                                    {...field}
+                                    inputRef={ref}
+                                    error={!!errors.passwordVerify}
+                                    label="Verify password"
+                                    type="password"
+                                    variant="outlined"
+                                    autoComplete="new-password"
+                                    fullWidth
+                                />
+                            )}
+                        />
+                        <FormInvalidText
+                            errorMessage={errors.passwordVerify?.message}
+                        />
+                    </Grid>
+
                     <Grid item xs={12} display={"flex"}>
                         <Button
                             color="primary"
