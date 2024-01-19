@@ -39,7 +39,6 @@ export default function RenderTasksHome({ user }: IProps) {
             </Grid>
         );
     }
-    console.log(tasks);
 
     return (
         <Grid container padding={theme.spacing(2)}>
@@ -52,11 +51,12 @@ export default function RenderTasksHome({ user }: IProps) {
                 <Box width={"45%"}>
                     <Typography variant="subtitle1">Todo</Typography>
                     {!!tasks &&
-                        tasks.map((task) => {
-                            if (task.completed) {
+                        tasks.map((task, i) => {
+                            console.log(task);
+                            if (!task.completed) {
                                 return (
                                     <Grid
-                                        key={task.todoId}
+                                        key={i}
                                         item
                                         xs={12}
                                         marginTop={theme.spacing(2)}
@@ -109,11 +109,11 @@ export default function RenderTasksHome({ user }: IProps) {
                 <Box width={"45%"}>
                     <Typography variant="subtitle1">Completed</Typography>
                     {!!tasks &&
-                        tasks.map((task) => {
-                            if (!task.completed) {
+                        tasks.map((task, i) => {
+                            if (task.completed) {
                                 return (
                                     <Grid
-                                        key={task.todoId}
+                                        key={i}
                                         item
                                         xs={12}
                                         marginTop={theme.spacing(2)}

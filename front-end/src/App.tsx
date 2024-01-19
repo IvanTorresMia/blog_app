@@ -9,7 +9,7 @@ function App() {
     useEffect(() => {
         const token = localStorage.getItem("userToken");
         if (!token) {
-            navigate("/sign-in");
+            navigate("/auth//sign-in");
         }
     }, [navigate]);
 

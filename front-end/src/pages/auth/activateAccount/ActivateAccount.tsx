@@ -64,7 +64,7 @@ export default function ActivateAccount() {
 
         try {
             await createUser(userData);
-            navigate("/sign-in");
+            navigate("/auth/sign-in");
         } catch (e) {
             console.log(e);
         }

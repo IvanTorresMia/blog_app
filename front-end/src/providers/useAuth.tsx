@@ -30,12 +30,11 @@ export function AuthProvider({ children }: IProps) {
         } catch (e) {
             const errorMessage = e as Error;
             if (errorMessage.message) {
-                navigate("/sign-in");
+                navigate("/auth/sign-in");
             }
         }
     }, [navigate]);
     useEffect(() => {
-        console.log("hi");
         getUser();
     }, [getUser]);
 

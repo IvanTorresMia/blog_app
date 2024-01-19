@@ -12,6 +12,7 @@ import CreateBlog from "./pages/blogs/components/CreateBlog";
 import ViewBlog from "./pages/blogs/components/ViewBlog";
 import UpdateBlog from "./pages/blogs/components/UpdateBlog";
 import ActivateAccount from "./pages/auth/activateAccount/ActivateAccount";
+import AuthLayout from "./components/AuthLayout";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -49,12 +50,18 @@ const router = createBrowserRouter([
         ],
     },
     {
-        path: "/sign-in",
-        element: <SignIn />,
-    },
-    {
-        path: "/sign-up",
-        element: <ActivateAccount />,
+        path: "/auth",
+        element: <AuthLayout />,
+        children: [
+            {
+                path: "sign-in",
+                element: <SignIn />,
+            },
+            {
+                path: "sign-up",
+                element: <ActivateAccount />,
+            },
+        ],
     },
 ]);
 root.render(
