@@ -10,6 +10,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const pages = ["Sign In", "Sign Up"];
 
@@ -18,6 +19,7 @@ interface IProps {
 }
 
 function AuthNav({ children }: IProps) {
+    const navigate = useNavigate();
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
         null
     );
@@ -26,8 +28,16 @@ function AuthNav({ children }: IProps) {
         setAnchorElNav(event.currentTarget);
     };
 
-    const handleCloseNavMenu = () => {
+    const handleCloseNavMenu = (option: string) => {
         setAnchorElNav(null);
+
+        if (option === pages[0]) {
+            navigate("/auth/sign-in");
+        }
+
+        if (option === pages[1]) {
+            navigate("/auth/sign-up");
+        }
     };
 
     return (
@@ -90,7 +100,7 @@ function AuthNav({ children }: IProps) {
                                 {pages.map((page) => (
                                     <MenuItem
                                         key={page}
-                                        onClick={handleCloseNavMenu}
+                                        onClick={() => handleCloseNavMenu(page)}
                                     >
                                         <Typography textAlign="center">
                                             {page}
@@ -127,11 +137,12 @@ function AuthNav({ children }: IProps) {
                             {pages.map((page) => (
                                 <Button
                                     key={page}
-                                    onClick={handleCloseNavMenu}
+                                    onClick={() => handleCloseNavMenu(page)}
                                     sx={{
                                         my: 2,
                                         color: "white",
                                         display: "block",
+                                        textTransform: "none",
                                     }}
                                 >
                                     {page}
