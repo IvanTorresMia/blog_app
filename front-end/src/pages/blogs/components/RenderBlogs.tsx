@@ -6,6 +6,7 @@ import { getAllUserBlogs } from "../../../apis/blog_apis";
 import { theme } from "../../../theme";
 import { useNavigate } from "react-router-dom";
 import { lightGray } from "../../../const/colors";
+import _ from "lodash";
 
 interface IProps {
     user: User;
@@ -27,6 +28,39 @@ export default function RenderBlogs({ user }: IProps) {
     useEffect(() => {
         getAllBlogsUser(user?.userId);
     }, [user?.userId]);
+
+    if (!blogs || _.isEmpty(blogs)) {
+        return (
+            <Grid
+                container
+                spacing={2}
+                textAlign={"center"}
+                marginTop={theme.spacing(20)}
+            >
+                <Grid item xs={12}>
+                    <Typography variant="h1">
+                        You haven't posted any blogs
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <Typography variant="subtitle1">
+                        Create your first blog!
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <Button
+                        onClick={() => {
+                            navigate("/create-blog");
+                        }}
+                        variant="contained"
+                    >
+                        Create New Blog
+                    </Button>
+                </Grid>
+            </Grid>
+        );
+    }
+
     return (
         <Grid container padding={theme.spacing(2)}>
             {!!blogs &&
