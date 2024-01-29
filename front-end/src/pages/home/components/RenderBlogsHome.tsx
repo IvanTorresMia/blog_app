@@ -31,11 +31,27 @@ export default function RenderBlogsHome({ user }: IProps) {
 
     if (_.isEmpty(blogs) || !blogs) {
         return (
-            <Grid container padding={theme.spacing(4)}>
+            <Grid
+                container
+                spacing={2}
+                textAlign={"center"}
+                marginTop={theme.spacing(4)}
+                marginBottom={theme.spacing(4)}
+            >
                 <Grid item xs={12}>
-                    <Typography variant="h1" textAlign={"center"}>
+                    <Typography variant="h1">
                         There are no blogs created
                     </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <Button
+                        onClick={() => {
+                            navigate("/create-blog");
+                        }}
+                        variant="contained"
+                    >
+                        Create New Blog
+                    </Button>
                 </Grid>
             </Grid>
         );
@@ -49,7 +65,7 @@ export default function RenderBlogsHome({ user }: IProps) {
                         <Grid
                             key={blog.blogId}
                             item
-                            xs={3}
+                            xs={6}
                             margin={theme.spacing(1)}
                             marginTop={theme.spacing(2)}
                             padding={theme.spacing(1)}
@@ -64,7 +80,7 @@ export default function RenderBlogsHome({ user }: IProps) {
                             <Divider />
                             <Box padding={theme.spacing(1)}>
                                 <Typography variant="caption">
-                                    {blog.body.slice(0, 30)}...
+                                    {blog.body.slice(0, 80)}...
                                 </Typography>
                             </Box>
                             <Box padding={theme.spacing(1)}>
