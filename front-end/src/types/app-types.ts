@@ -36,3 +36,8 @@ export type GetBlog = {
     blogId: number;
     userId: number;
 };
+
+export type UpdateTaskData = {
+    task: UpdateTask;
+    value: boolean;
+};
