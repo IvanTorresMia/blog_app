@@ -42,3 +42,6 @@ test/*.js
 .DS_Store
 
 .prettierrc.json
+
+# ENV variables
+.env
