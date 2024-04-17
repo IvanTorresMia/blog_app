@@ -18,10 +18,13 @@ import { useNavigate } from "react-router-dom";
 import { theme } from "../../../theme";
 import { signInUser } from "../../../apis/auth";
 import { useState } from "react";
+import { AxiosError } from "axios";
+import FormInvalidText from "../../../components/FormErrorText";
 
 export default function SignIn() {
     const navigate = useNavigate();
     const [showPass, setShowPass] = useState<boolean>(false);
+    const [error, setError] = useState<string | null>(null);
 
     const {
         control,
@@ -42,7 +45,10 @@ export default function SignIn() {
             } else {
             }
         } catch (err) {
-            console.log(err);
+            const error = err as AxiosError;
+            if (error.response?.data) {
+                setError(error.response.data as string);
+            }
         }
     };
     return (
@@ -96,6 +102,11 @@ export default function SignIn() {
                             )}
                         />
                     </Grid>
+                    {!!error && (
+                        <Grid item xs={8} textAlign={"center"}>
+                            <FormInvalidText errorMessage={error} />
+                        </Grid>
+                    )}
                     <Grid item xs={8} display={"flex"}>
                         <Button
                             color="primary"
